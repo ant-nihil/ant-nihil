@@ -15,7 +15,7 @@ echo "qwer1234" | sudo -S dpkg -i ./raspberrypi-kernel-headers_1.20210303-1_arm6
 echo "qwer1234" | sudo -S dpkg -i ./raspberrypi-kernel_1.20210303-1_arm64/raspberrypi-kernel_1.20210303-1_arm64.deb
 
 #description:copy bcm2711-rpi-4-b.dtb to the specified directory
-echo "qwer1234" | -S sudo cp /boot/bcm2711-rpi-4-b.dtb /etc/flash-kernel/dtbs/
+echo "qwer1234" | sudo -S cp /boot/bcm2711-rpi-4-b.dtb /etc/flash-kernel/dtbs/
 
 #description:delate the two temporary directories
 rm -r -f raspberrypi-kernel-headers_1.20210303-1_arm64 raspberrypi-kernel_1.20210303-1_arm64
