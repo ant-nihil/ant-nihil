@@ -31,4 +31,4 @@ echo "12345678" | sudo -S rm dtb-5.10.17-v8+
 echo "12345678" | sudo -S ln -s dtbs/5.10.17-v8+/./bcm2711-rpi-cm4.dtb dtb-5.10.17-v8+
 echo "12345678" | sudo -S update-initramfs -u
 sync
-echo "12345678" | reboot
+echo "12345678" | sudo -S reboot
