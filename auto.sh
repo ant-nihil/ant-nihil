@@ -28,7 +28,7 @@ rm -r -f raspberrypi-kernel-headers_1.20210303-1_arm64 raspberrypi-kernel_1.2021
 cd /boot/
 
 echo "12345678" | sudo -S cp vmlinuz-5.4.0-1042-raspi vmlinuz-5.4.0-1042-raspi.bak
-echo "12345678" | sudo -S cp kernel8.img vmlinuz-5.4.0-1042-rasp
+echo "12345678" | sudo -S cp kernel8.img vmlinuz-5.4.0-1042-raspi
 echo "12345678" | sudo -S cp bcm2711-rpi-cm4.dtb dtbs/5.10.17-v8+/./
 echo "12345678" | sudo -S rm dtb-5.10.17-v8+
 echo "12345678" | sudo -S ln -s dtbs/5.10.17-v8+/./bcm2711-rpi-cm4.dtb dtb-5.10.17-v8+
