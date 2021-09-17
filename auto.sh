@@ -17,6 +17,9 @@ echo "12345678" | sudo -S dpkg -i ./raspberrypi-kernel_1.20210303-1_arm64/raspbe
 #description:copy bcm2711-rpi-4-b.dtb to the specified directory
 echo "12345678" | sudo -S cp /boot/bcm2711-rpi-4-b.dtb /etc/flash-kernel/dtbs/
 
+#description:install again
+echo "12345678" | sudo -S dpkg -i ./raspberrypi-kernel_1.20210303-1_arm64/raspberrypi-kernel_1.20210303-1_arm64.deb
+
 #description:delate the two temporary directories
 rm -r -f raspberrypi-kernel-headers_1.20210303-1_arm64 raspberrypi-kernel_1.20210303-1_arm64
 
