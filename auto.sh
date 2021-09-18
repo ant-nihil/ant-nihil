@@ -29,7 +29,7 @@ echo $password | sudo -S ln -s dtbs/5.10.17-v8+/./bcm2711-rpi-cm4.dtb dtb-5.10.1
 echo $password | sudo -S update-initramfs -u
 sync
 #temporary annotation
-echo $password | sudo -S reboot
+#echo $password | sudo -S reboot
 cd ~
 
 #4.
