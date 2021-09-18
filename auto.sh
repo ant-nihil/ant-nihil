@@ -39,8 +39,8 @@ echo "12345678" | sudo -S apt -y install build-essential
 
 git clone https://github.com/Seeed-Studio/seeed-linux-dtoverlays
 cd seeed-linux-dtoverlays
-echo "12345678" | sudo make all_rpi
-echo "12345678" | sudo make install_rpi
+echo "12345678" | sudo -S make all_rpi
+echo "12345678" | sudo -S make install_rpi
 
 #description:add the following code into /boot/firmware/config.txt
 echo "#-------------------------------------------
