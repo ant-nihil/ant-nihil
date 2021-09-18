@@ -3,6 +3,11 @@
 echo "This is a test code for auto start"
 password="12345678"
 
+if [[ $EUID ne 0 ]]; then
+    echo "This script must be run as root (use sudo)" 1>&2
+    exit 1
+    fi
+
 #3.
 #description:creat two directories and download two .deb files in respective directory
 mkdir raspberrypi-kernel-headers_1.20210303-1_arm64 raspberrypi-kernel_1.20210303-1_arm64
