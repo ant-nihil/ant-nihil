@@ -35,7 +35,7 @@ cd ~
 #4.
 #description:install seeed-linux-dtoverlay driver
 echo "12345678" | sudo -S apt install make
-echo "12345678" | sudo apt -y install build-essential
+echo "12345678" | sudo -S apt -y install build-essential
 
 git clone https://github.com/Seeed-Studio/seeed-linux-dtoverlays
 cd seeed-linux-dtoverlays
