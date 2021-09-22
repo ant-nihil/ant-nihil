@@ -3,7 +3,7 @@
 echo "This is a test code for auto start"
 password="12345678"
 
-if [[ $EUID ne 0 ]]; then
+if [[ $EUID -ne 0 ]]; then
     echo "This script must be run as root (use sudo)" 1>&2
     exit 1
     fi
