@@ -60,6 +60,8 @@ function change_kernel_version() {
 }
 
 function install() {
+  sudo apt install make 
+  sudo apt install build-essential
   change_kernel_version
   
   echo "------------------------------------------------------"
