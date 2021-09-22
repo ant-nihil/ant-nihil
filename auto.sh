@@ -48,8 +48,6 @@ function change_kernel_version() {
   sudo cp $vmlinuz $vmlinuz.bak
   sudo cp kernel8.img $vmlinuz
   
-  #sudo cp vmlinuz-5.4.0-1042-raspi vmlinuz-5.4.0-1042-raspi.bak
-  #sudo cp kernel8.img vmlinuz-5.4.0-1042-raspi
   sudo cp bcm2711-rpi-cm4.dtb dtbs/5.10.17-v8+/./
   sudo rm dtb-5.10.17-v8+
   sudo ln -s dtbs/5.10.17-v8+/./bcm2711-rpi-cm4.dtb dtb-5.10.17-v8+
