@@ -1,10 +1,6 @@
-- 👋 Hi, I’m @ant-nihil
-- 👀 I’m interested in ...
-- 🌱 I’m currently learning ...
-- 💞️ I’m looking to collaborate on ...
-- 📫 How to reach me ...
+git clone https://github.com/ant-nihil/reTerminal_self-strarting
 
-<!---
-ant-nihil/ant-nihil is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
-You can click the Preview link to take a look at your changes.
---->
+cd reTerminal_self-strarting
+
+chmod +x auto.sh
+./auto.sh
