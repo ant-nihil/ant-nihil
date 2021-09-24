@@ -56,7 +56,7 @@ function fix_desktop () {
   cd seeed-linux-dtoverlays
   
   make all_rpi
-  make install_rpi
+  sudo make install_rpi
   
   sudo echo "#-------------------------------------------
 dtoverlay=vc4-fkms-v3d
