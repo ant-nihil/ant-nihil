@@ -45,7 +45,7 @@ function download_install_debpkg() {
   
   #copy bcm2711-rpi-4-b.dtb to the specified directory,then install again
   sudo cp /boot/bcm2711-rpi-4-b.dtb /etc/flash-kernel/dtbs/
-  sudo dpkg -i temporary_dir/$version-kernel
+  sudo dpkg -i temporary_dir/$version_kernel
   
   rm -r -f temporary_dir
 }
