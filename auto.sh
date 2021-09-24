@@ -31,6 +31,9 @@ function get_kernel_version() {
 function download_install_debpkg() {
   local version-kernel-headers version-kernel
   mkdir temporary_dir
+  
+  wget http://archive.raspberrypi.org/debian/pool/main/r/raspberrypi-firmware/ -O rpi-kernel-version-text 
+  
   version-kernel-headers=`cat rpi-kernel-version-text  | grep raspberrypi-kernel-headers | grep arm64 | awk 'END { print }' | awk '{print $6}' | awk -F '\"' '{print $2} '`
   version-kernel=`cat rpi-kernel-version-text  | grep raspberrypi-kernel | grep arm64 | awk 'END { print }' | awk '{print $6}' | awk -F '\"' '{print $2} '`
 
