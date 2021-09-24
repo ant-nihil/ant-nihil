@@ -107,7 +107,7 @@ function install_kernel() {
   
   kernel_name=`find /boot/dtbs/ | grep + | awk 'END {print}' | awk -F "\/" '{print $4}'`
   
-  sudo cp bcm2711-rpi-cm4.dtb dtbs./
+  sudo cp bcm2711-rpi-cm4.dtb dtbs/$kernel_name/./
   sudo rm dtb-$kernel_name
   sudo ln -s dtbs/$kernel_name/./bcm2711-rpi-cm4.dtb dtb-$kernel_name
   sudo update-initramfs -u
