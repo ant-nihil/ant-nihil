@@ -52,7 +52,18 @@ function download_install_debpkg() {
 
 #fix desktop
 function fix_desktop () {
-  git clone https://github.com/ant-nihil/seeed-linux-dtoverlays
+  
+  local num=1
+  #download until git fetch or 2000
+  while [ $num -le 2000 ]; do
+    git clone https://github.com/ant-nihil/seeed-linux-dtoverlays
+    if [ $? -ne 0 ]; then
+        num=$(($num+1))
+    else
+        break
+    fi
+  done
+  
   cd seeed-linux-dtoverlays
   
   make all_rpi
