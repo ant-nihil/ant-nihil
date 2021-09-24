@@ -52,7 +52,7 @@ function download_install_debpkg() {
 
 #fix desktop
 function fix_desktop () {
-  git clone https://github.com/Seeed-Studio/seeed-linux-dtoverlays
+  git clone https://github.com/ant-nihil/seeed-linux-dtoverlays
   cd seeed-linux-dtoverlays
   
   make all_rpi
