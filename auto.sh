@@ -55,6 +55,8 @@ function download_install_debpkg() {
 function install_kernel() {
   local vmlinuz kernel_name
   
+  sudo apt install make 
+  sudo apt -y --force-yes install build-essential
   download_install_debpkg
   
   cd /boot/
@@ -75,8 +77,7 @@ function install_kernel() {
 }
 
 function install() {
-  sudo apt install make 
-  sudo apt install build-essential
+  
   install_kernel
   
   echo "------------------------------------------------------"
