@@ -3,6 +3,8 @@
 uname_r=$(uname -r)
 arch_r=$(dpkg --print-architecture)
 
+url="http://archive.raspberrypi.org/debian/pool/main/r/raspberrypi-firmware/"
+
 if [[ $EUID -ne 0 ]]; then
   echo "This script must be run as root (use sudo)" 1>&2
   exit 1
@@ -26,31 +28,43 @@ function get_kernel_version() {
   return 0
 }
 
-#change the running kernel to 5.10.17
-function change_kernel_version() {
-  local vmlinuz
+function download_install_debpkg() {
+  local version-kernel-headers version-kernel
   mkdir temporary_dir
-  
-  wget -P temporary_dir http://archive.raspberrypi.org/debian/pool/main/r/raspberrypi-firmware/raspberrypi-kernel-headers_1.20210303-1_arm64.deb
-  wget -P temporary_dir http://archive.raspberrypi.org/debian/pool/main/r/raspberrypi-firmware/raspberrypi-kernel_1.20210303-1_arm64.deb
-  sudo dpkg -i temporary_dir/raspberrypi-kernel-headers_1.20210303-1_arm64.deb
-  sudo dpkg -i temporary_dir/raspberrypi-kernel_1.20210303-1_arm64.deb
+  version-kernel-headers=`cat rpi-kernel-version-text  | grep raspberrypi-kernel-headers | grep arm64 | awk 'END { print }' | awk '{print $6}' | awk -F '\"' '{print $2} '`
+  version-kernel=`cat rpi-kernel-version-text  | grep raspberrypi-kernel | grep arm64 | awk 'END { print }' | awk '{print $6}' | awk -F '\"' '{print $2} '`
 
+  wget -P temporary_dir $url$version-kernel-headers
+  wget -P temporary_dir $url$version-kernel
+  
+  sudo dpkg -i temporary_dir/$version-kernel-headers
+  sudo dpkg -i temporary_dir/$version-kernel
+  
   #copy bcm2711-rpi-4-b.dtb to the specified directory,then install again
   sudo cp /boot/bcm2711-rpi-4-b.dtb /etc/flash-kernel/dtbs/
-  sudo dpkg -i temporary_dir/raspberrypi-kernel_1.20210303-1_arm64.deb
+  sudo dpkg -i temporary_dir/$version-kernel
   
   rm -r -f temporary_dir
+}
 
+
+#change the running kernel to 5.10.17
+function install_kernel() {
+  local vmlinuz kernel_name
+  
+  download_install_debpkg
+  
   cd /boot/
   get_kernel_version
   vmlinuz="vmlinuz-$_VER_RUN"
   sudo cp $vmlinuz $vmlinuz.bak
   sudo cp kernel8.img $vmlinuz
   
-  sudo cp bcm2711-rpi-cm4.dtb dtbs/5.10.17-v8+/./
-  sudo rm dtb-5.10.17-v8+
-  sudo ln -s dtbs/5.10.17-v8+/./bcm2711-rpi-cm4.dtb dtb-5.10.17-v8+
+  kernel_name=`find /boot/dtbs/ | grep + | awk 'END {print}' | awk -F "\/" '{print $4}'`
+  
+  sudo cp bcm2711-rpi-cm4.dtb dtbs./
+  sudo rm dtb-$kernel_name
+  sudo ln -s dtbs/$kernel_name/./bcm2711-rpi-cm4.dtb dtb-$kernel_name
   sudo update-initramfs -u
   sync
   
@@ -60,7 +74,7 @@ function change_kernel_version() {
 function install() {
   sudo apt install make 
   sudo apt install build-essential
-  change_kernel_version
+  install_kernel
   
   echo "------------------------------------------------------"
   echo "Please reboot your device to apply all settings"
