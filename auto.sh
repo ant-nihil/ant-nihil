@@ -74,10 +74,10 @@ dtoverlay=reTerminal,tp_rotate=1
   
   make all_rpi
   cd /boot/firmware/overlays/
-  cp vc4-kms-v3d-pi4.dtbo vc4-kms-v3d-pi4.dtbo.bak
+  sudo cp vc4-kms-v3d-pi4.dtbo vc4-kms-v3d-pi4.dtbo.bak
   cp /home/ubuntu/seeed-linux-dtoverlays/overlays/rpi/reTerminal-overlay.dts /boot/firmware/overlays/vc4-kms-v3d-pi4.dtbo
   
-  apt -y --force-yes install ubuntu-desktop
+  sudo apt -y --force-yes install ubuntu-desktop
 }
 
 #change the running kernel to 5.10.
