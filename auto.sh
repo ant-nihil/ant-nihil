@@ -50,12 +50,41 @@ function download_install_debpkg() {
   rm -r -f temporary_dir
 }
 
+#fix desktop
+function fix_desktop () {
+  git clone https://github.com/Seeed-Studio/seeed-linux-dtoverlays
+  cd seeed-linux-dtoverlays
+  
+  make all_rpi
+  make install_rpi
+  
+  sudo echo "#-------------------------------------------
+dtoverlay=vc4-fkms-v3d
+enable_uart=1
+dtoverlay=dwc2,dr_mode=host
+dtparam=ant2
+disable_splash=1
+ignore_lcd=1
+dtoverlay=vc4-kms-v3d-pi4
+dtoverlay=i2c3,pins_4_5
+gpio=13=pu
+dtoverlay=reTerminal,tp_rotate=1
+#------------------------------------------" >> /boot/firmware/config.txt
+  cp /boot/overlays/reTerminal.dtbo /boot/firmware/overlays/reTerminal.dtbo
+  
+  make all_rpi
+  cd /boot/firmware/overlays/
+  cp vc4-kms-v3d-pi4.dtbo vc4-kms-v3d-pi4.dtbo.bak
+  cp /home/ubuntu/seeed-linux-dtoverlays/overlays/rpi/reTerminal-overlay.dts /boot/firmware/overlays/vc4-kms-v3d-pi4.dtbo
+  
+  apt -y --force-yes install ubuntu-desktop
+}
 
-#change the running kernel to 5.10.17
+#change the running kernel to 5.10.
 function install_kernel() {
   local vmlinuz kernel_name
   
-  sudo apt install make 
+  sudo apt install make
   sudo apt -y --force-yes install build-essential
   download_install_debpkg
   
@@ -79,6 +108,8 @@ function install_kernel() {
 function install() {
   
   install_kernel
+  
+  fix_desktop
   
   echo "------------------------------------------------------"
   echo "Please reboot your device to apply all settings"
