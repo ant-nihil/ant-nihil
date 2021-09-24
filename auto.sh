@@ -34,14 +34,14 @@ function download_install_debpkg() {
   
   wget http://archive.raspberrypi.org/debian/pool/main/r/raspberrypi-firmware/ -O rpi-kernel-version-text 
   
-  version-kernel-headers=`cat rpi-kernel-version-text  | grep raspberrypi-kernel-headers | grep arm64 | awk 'END { print }' | awk '{print $6}' | awk -F '\"' '{print $2} '`
-  version-kernel=`cat rpi-kernel-version-text  | grep raspberrypi-kernel | grep arm64 | awk 'END { print }' | awk '{print $6}' | awk -F '\"' '{print $2} '`
+  version_kernel_headers=`cat rpi-kernel-version-text  | grep raspberrypi-kernel-headers | grep arm64 | awk 'END { print }' | awk '{print $6}' | awk -F '\"' '{print $2} '`
+  version_kernel=`cat rpi-kernel-version-text  | grep raspberrypi-kernel | grep arm64 | awk 'END { print }' | awk '{print $6}' | awk -F '\"' '{print $2} '`
 
-  wget -P temporary_dir $url$version-kernel-headers
-  wget -P temporary_dir $url$version-kernel
+  wget -P temporary_dir $url$version_kernel_headers
+  wget -P temporary_dir $url$version_kernel
   
-  sudo dpkg -i temporary_dir/$version-kernel-headers
-  sudo dpkg -i temporary_dir/$version-kernel
+  sudo dpkg -i temporary_dir/$version_kernel_headers
+  sudo dpkg -i temporary_dir/$version_kernel
   
   #copy bcm2711-rpi-4-b.dtb to the specified directory,then install again
   sudo cp /boot/bcm2711-rpi-4-b.dtb /etc/flash-kernel/dtbs/
