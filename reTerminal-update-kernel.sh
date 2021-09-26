@@ -88,7 +88,7 @@ function install() {
 
   install_kernel
 
-
+  chmod +x reTerminal-auto.sh
   echo "------------------------------------------------------"
   echo "Please reboot your device to apply all settings"
   echo "Enjoy!"
