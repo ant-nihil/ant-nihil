@@ -1,4 +1,4 @@
-#/bin/bash
+#!/bin/bash
 
 function install_driver() {
   sudo apt install -y --force-yes build-essential
