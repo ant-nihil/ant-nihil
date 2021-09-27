@@ -6,8 +6,7 @@ function install_driver() {
   
   cd seeed-linux-dtoverlays
   
-  sed -i "227 i \tfragment@8 {\n\ttarget = <&hdmi0>;\n\t\t__overlay__  {\n\t\t\tstatus = "disabled";\n\t\t\t};\n\t\t};\n\tfragment@9 {\n\t\ttarget = <&hdmi1>;\n\t\t__overlay__  {\n\t\t\tstatus = "disabled";\n\t\t};\n\t};" overlays/rpi/reTerminal-overlay.dts
-  make all_rpi
+  sed -i "227 i fragment@8 {\n\ttarget = <&hdmi0>;\n\t\t__overlay__  {\n\t\t\tstatus = \"disabled\";\n\t\t\t};\n\t\t};\n\tfragment@9 {\n\t\ttarget = <&hdmi1>;\n\t\t__overlay__  {\n\t\t\tstatus = \"disabled\";\n\t\t};\n\t};" overlays/rpi/reTerminal-overlay.dts make all_rpi
   make install_rpi
   
   sudo echo "#-------------------------------------------
