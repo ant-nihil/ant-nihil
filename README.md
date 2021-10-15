@@ -6,7 +6,9 @@ cd reTerminal_self-strarting
 chmod +x reTerminal_patchone.sh reTerminal_patchtwo.sh
 
 sudo ./reTerminal_patchone.sh
+
 sudo reboot
 
 sudo ./reTerminal_patchtwo.sh
+
 sudo reboot
