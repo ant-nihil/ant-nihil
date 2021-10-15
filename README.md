@@ -3,7 +3,10 @@ git clone https://github.com/ant-nihil/reTerminal_self-strarting
 
 cd reTerminal_self-strarting
 
-chmod +x auto.sh
+chmod +x reTerminal_patchone.sh reTerminal_patchtwo.sh
 
+sudo ./reTerminal_patchone.sh
+sudo reboot
 
-bash ./auto.sh
+sudo ./reTerminal_patchtwo.sh
+sudo reboot
