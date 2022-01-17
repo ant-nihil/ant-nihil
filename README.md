@@ -1,5 +1,5 @@
 #Please follow the steps below at the terminal
-git clone https://github.com/ant-nihil/reTerminal_self-strarting
+git clone git@github.com:ant-nihil/reTerminal_self_start.git
 
 cd reTerminal_self-strarting
 
